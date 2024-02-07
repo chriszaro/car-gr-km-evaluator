@@ -1,0 +1,17 @@
+{
+  "description": "If the car has more than 15.000km per year, then the km value becomes red.",
+  "manifest_version": 3,
+  "name": "CarGR Pricer",
+  "version": "1.0",
+  "icons": {
+    "48": "icons/border-48.png"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.car.gr/*"],
+      "js": ["pricer.js"]
+    }
+  ]
+
+}
