@@ -2,8 +2,12 @@ function clearNumbersRegex(str) {
   return str.replace(/\D/g, "");
 }
 
-function getLast4Chars(str) {
+function myGetYear(str) {
   return str.slice(-4); // Extract the last 4 characters
+}
+
+function myGetMonth(str) {
+  return str.slice(-6,-4); // Extract the last 4 characters
 }
 
 setTimeout(mainFun, 1500);
@@ -20,18 +24,20 @@ function mainFun() {
 		// Check if the parent has a previous sibling element that is a span
 		const previousSpan = span.previousSibling;
 
-		const date = Number(getLast4Chars(clearNumbersRegex(previousSpan.textContent)));
-		// You now have the previous span element:
-		//console.log(2024-date);
+		const year = Number(myGetYear(clearNumbersRegex(previousSpan.textContent)));
+		const month = Number(myGetMonth(clearNumbersRegex(previousSpan.textContent)));
+		
+		const date = year + month/12;
 
-		if (date==2024){}
-		else
-		if ((2024-date)*15000 < km) {
+		const today = new Date();
+		const thisYear = today.getFullYear()
+		const thisDate = thisYear + (today.getMonth()+1)/12;
+		
+		if (year==thisYear){}
+		else if (Math.round(thisDate-date)*15000 < km) {
 			span.style.background = "red";
 			span.style.color = "white";
 		}
-		
-
 	});
 }
 
